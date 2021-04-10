@@ -1,3 +1,7 @@
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
+
 export type PostsType = {
     id: number
     message: string
@@ -11,6 +15,7 @@ export type MessagesType = {
     id: number
     message: string
 }
+
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
@@ -18,14 +23,32 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageBody: string
 }
+export type SidebarType = {}
 export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    sidebar: SidebarType
+}
+export type ActionProfileType = {
+    type: string;
+    newText: string;
+}
+export type ActionDialogType = {
+    type: string;
+    body: string;
+}
+export type StoreType = {
+    _state: StateType
+    _callSubscriber: () => void
+    getState: () => StateType
+    subscribe: (observer: StateType) => void
+    dispatch: (action: ActionProfileType | ActionDialogType) => StateType
 }
 
-let state =
-    {
+let store: StoreType = {
+    _state: {
         profilePage: {
             posts: [
                 {id: 1, message: "Hi, how are you?", likesCount: 15},
@@ -46,31 +69,28 @@ let state =
                 {id: 1, message: "Hi"},
                 {id: 2, message: "How are you?"},
                 {id: 3, message: "I love you!"},
-            ]
-        }
+            ],
+            newMessageBody: "",
+        },
+        sidebar: {}
+    },
+    _callSubscriber() {
+        console.log("State changed")
+    },
 
+    getState() {
+        return this._state;
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        this._callSubscriber();
     }
-
-let rerenderEntireTree = (state: StateType) => {
-    console.log("Showed")
 }
 
-export const addPost = () => {
-    let newPost = {
-        id: 5,
-        message: state.profilePage.newPostText,
-        likesCount: 0
-    };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = "";
-    rerenderEntireTree(state);
-}
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
-}
-export const subscribe = (observer: (state: StateType) => void) => {
-    rerenderEntireTree = observer;
-}
-
-export default state;
+export default store;
