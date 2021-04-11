@@ -33,18 +33,18 @@ export type StateType = {
 }
 export type ActionProfileType = {
     type: string;
-    newText: string;
+    newText?: string;
 }
 export type ActionDialogType = {
     type: string;
-    body: string;
+    body?: string;
 }
 export type StoreType = {
     _state: StateType
-    _callSubscriber: () => void
+    _callSubscriber: (state?: StateType ) => void
     getState: () => StateType
-    subscribe: (observer: StateType) => void
-    dispatch: (action: ActionProfileType | ActionDialogType) => StateType
+    subscribe: (callback: (state: StateType) => void) => void
+    dispatch: (action: ActionProfileType | ActionDialogType) => void
 }
 
 let store: StoreType = {

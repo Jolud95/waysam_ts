@@ -1,12 +1,13 @@
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {StoreType} from "../../redux/state";
+import {ActionDialogType, ActionProfileType, StoreType} from "../../redux/state";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import {ChangeEvent} from "react";
 
 type DialogsPropsType = {
     store: StoreType
+    dispatch: (action: ActionDialogType) => void
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
