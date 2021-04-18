@@ -2,6 +2,11 @@ import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
+export const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
+export const SEND_MESSAGE = "SEND-MESSAGE";
+export const ADD_POST = "ADD-POST";
+export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
 export type PostsType = {
     id: number
     message: string
@@ -31,20 +36,34 @@ export type StateType = {
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
-export type ActionProfileType = {
-    type: string;
-    newText?: string;
+export type ActionProfileType = AddPostAction | UpdateNewPostTextAction
+
+export type AddPostAction = {
+    type: typeof ADD_POST
 }
-export type ActionDialogType = {
-    type: string;
-    body?: string;
+export type UpdateNewPostTextAction = {
+    type: typeof UPDATE_NEW_POST_TEXT
+    newText: string
 }
+
+export type ActionDialogType = NewMessageBodyAction | SendMessageAction
+
+export type NewMessageBodyAction = {
+    type: typeof UPDATE_NEW_MESSAGE_BODY
+    body: string
+}
+
+export type SendMessageAction = {
+    type: typeof SEND_MESSAGE
+}
+export type ActionsType = ActionProfileType | ActionDialogType;
+
 export type StoreType = {
     _state: StateType
-    _callSubscriber: (state?: StateType ) => void
+    _callSubscriber: (state: StateType ) => void
     getState: () => StateType
     subscribe: (callback: (state: StateType) => void) => void
-    dispatch: (action: ActionProfileType | ActionDialogType) => void
+    dispatch: (action: ActionsType) => void
 }
 
 let store: StoreType = {
@@ -74,7 +93,7 @@ let store: StoreType = {
         },
         sidebar: {}
     },
-    _callSubscriber() {
+    _callSubscriber(state: StateType) {
         console.log("State changed")
     },
 
@@ -89,7 +108,7 @@ let store: StoreType = {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-        this._callSubscriber();
+        this._callSubscriber(this._state);
     }
 }
 
