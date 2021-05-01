@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/waysam_ts/static/css/main.45bcd56d.chunk.css",
-    "main.js": "/waysam_ts/static/js/main.67d460ea.chunk.js",
-    "main.js.map": "/waysam_ts/static/js/main.67d460ea.chunk.js.map",
-    "runtime-main.js": "/waysam_ts/static/js/runtime-main.3e5deeea.js",
-    "runtime-main.js.map": "/waysam_ts/static/js/runtime-main.3e5deeea.js.map",
-    "static/js/2.0d9480f3.chunk.js": "/waysam_ts/static/js/2.0d9480f3.chunk.js",
-    "static/js/2.0d9480f3.chunk.js.map": "/waysam_ts/static/js/2.0d9480f3.chunk.js.map",
-    "static/js/3.8c2de115.chunk.js": "/waysam_ts/static/js/3.8c2de115.chunk.js",
-    "static/js/3.8c2de115.chunk.js.map": "/waysam_ts/static/js/3.8c2de115.chunk.js.map",
+    "main.js": "/waysam_ts/static/js/main.ff451e24.chunk.js",
+    "main.js.map": "/waysam_ts/static/js/main.ff451e24.chunk.js.map",
+    "runtime-main.js": "/waysam_ts/static/js/runtime-main.a46a1ce0.js",
+    "runtime-main.js.map": "/waysam_ts/static/js/runtime-main.a46a1ce0.js.map",
+    "static/js/2.88c88f98.chunk.js": "/waysam_ts/static/js/2.88c88f98.chunk.js",
+    "static/js/2.88c88f98.chunk.js.map": "/waysam_ts/static/js/2.88c88f98.chunk.js.map",
+    "static/js/3.ce78cbaf.chunk.js": "/waysam_ts/static/js/3.ce78cbaf.chunk.js",
+    "static/js/3.ce78cbaf.chunk.js.map": "/waysam_ts/static/js/3.ce78cbaf.chunk.js.map",
     "index.html": "/waysam_ts/index.html",
     "static/css/main.45bcd56d.chunk.css.map": "/waysam_ts/static/css/main.45bcd56d.chunk.css.map",
-    "static/js/2.0d9480f3.chunk.js.LICENSE.txt": "/waysam_ts/static/js/2.0d9480f3.chunk.js.LICENSE.txt"
+    "static/js/2.88c88f98.chunk.js.LICENSE.txt": "/waysam_ts/static/js/2.88c88f98.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3e5deeea.js",
-    "static/js/2.0d9480f3.chunk.js",
+    "static/js/runtime-main.a46a1ce0.js",
+    "static/js/2.88c88f98.chunk.js",
     "static/css/main.45bcd56d.chunk.css",
-    "static/js/main.67d460ea.chunk.js"
+    "static/js/main.ff451e24.chunk.js"
   ]
 }
