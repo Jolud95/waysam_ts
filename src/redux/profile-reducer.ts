@@ -1,14 +1,34 @@
-import {ActionsType, ADD_POST, ProfilePageType, UPDATE_NEW_POST_TEXT} from "./store";
+import {ProfilePageType} from "./store";
 
-const initialState = {
+
+export const ADD_POST = "ADD-POST";
+export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+export const SET_USER_PROFILE = "SET_USERS";
+
+export type AddPostAction = {
+    type: typeof ADD_POST
+}
+export type UpdateNewPostTextAction = {
+    type: typeof UPDATE_NEW_POST_TEXT
+    newText: string
+}
+export type setUserProfileAction = {
+    type: typeof SET_USER_PROFILE
+    profile: any
+}
+
+export type ActionProfileType = AddPostAction | UpdateNewPostTextAction | setUserProfileAction
+
+let initialState: ProfilePageType = {
     posts: [
         {id: 1, message: "Hi, how are you?", likesCount: 15},
         {id: 2, message: "It's my first post", likesCount: 10},
     ],
-    newPostText: ""
+    newPostText: "",
+    profile: null
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
+export const profileReducer = (state = initialState, action: ActionProfileType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             return {
@@ -21,9 +41,16 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 ...state,
                 newPostText: action.newText
             };
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            };
         default:
             return state;
     }
 }
-export const addPostActionCreator = () => ({type: ADD_POST} as const)
-export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text} as const)
+
+export const addPostActionCreator = (): AddPostAction=> ({type: ADD_POST})
+export const updateNewPostTextActionCreator = (text: string): UpdateNewPostTextAction => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const setUserProfile = (profile: any): setUserProfileAction  => ({type: SET_USER_PROFILE, profile})

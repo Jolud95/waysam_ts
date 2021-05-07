@@ -1,14 +1,6 @@
-import {profileReducer} from "./profile-reducer";
-import {dialogsReducer} from "./dialogs-reducer";
-import {sidebarReducer} from "./sidebar-reducer";
-
-export const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
-export const SEND_MESSAGE = "SEND-MESSAGE";
-export const ADD_POST = "ADD-POST";
-export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-export const FOLLOW = "FOLLOW";
-export const UNFOLLOW = "UNFOLLOW";
-export const SET_USERS = "SET_USERS";
+import {ActionProfileType} from "./profile-reducer";
+import {ActionDialogType} from "./dialogs-reducer";
+import {ActionUsersType} from "./users-reducer";
 
 export type PostsType = {
     id: number
@@ -23,21 +15,17 @@ export type MessagesType = {
     id: number
     message: string
 }
-export type LocationType = {
-    city: string
-    country: string
-}
 export type UsersType = {
-    id: number
-    photos: string
-    followed: boolean
-    name: string
-    status: string
-    location: LocationType
+    users: any[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
 }
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: any
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
@@ -54,38 +42,7 @@ export type StateType = {
     sidebar: SidebarType
     usersPage: UsersPageType
 }
-export type ActionProfileType = AddPostAction | UpdateNewPostTextAction
 
-export type AddPostAction = {
-    type: typeof ADD_POST
-}
-export type UpdateNewPostTextAction = {
-    type: typeof UPDATE_NEW_POST_TEXT
-    newText: string
-}
-export type ActionDialogType = NewMessageBodyAction | SendMessageAction
-
-export type NewMessageBodyAction = {
-    type: typeof UPDATE_NEW_MESSAGE_BODY
-    body: string
-}
-
-export type SendMessageAction = {
-    type: typeof SEND_MESSAGE
-}
-export type FollowAction = {
-    type: typeof FOLLOW
-    userId: number
-}
-export type UnfollowAction = {
-    type: typeof UNFOLLOW
-    userId: number
-}
-export type SetUsersAction = {
-    type: typeof SET_USERS
-    users: Array<UsersType>
-}
-export type ActionUsersType = FollowAction | UnfollowAction | SetUsersAction
 
 export type ActionsType = ActionProfileType | ActionDialogType | ActionUsersType;
 
