@@ -1,8 +1,9 @@
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {ProfileType} from "../../redux/store";
 
 type ProfilePropsType = {
-    profile: any
+    profile: null | ProfileType
 }
 const Profile = (props: ProfilePropsType) => {
     return (

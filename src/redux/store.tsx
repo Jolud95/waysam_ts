@@ -1,7 +1,3 @@
-import {ActionProfileType} from "./profile-reducer";
-import {ActionDialogType} from "./dialogs-reducer";
-import {ActionUsersType} from "./users-reducer";
-
 export type PostsType = {
     id: number
     message: string
@@ -15,25 +11,63 @@ export type MessagesType = {
     id: number
     message: string
 }
+
+export type ItemsType = {
+    name: string
+    id: string
+    photos: {
+        small: null | string
+        large: null | string
+    }
+    status: null | string
+    followed: boolean
+}
+export type UserType = {
+    items: Array<ItemsType>
+    totalCount: number
+    error: null | string
+}
 export type UsersType = {
-    users: any[]
+    users: Array<ItemsType>
     pageSize: number
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
 }
+
+export type ProfileType = {
+    userId: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: {
+        github: string
+        vk: string
+        facebook: string
+        instagram: string
+        twitter: string
+        website: string
+        youtube: string
+        mainLink: string
+    }
+    photos: {
+        small: string | undefined
+        large: string | undefined
+    }
+}
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
-    profile: any
+    profile: null | ProfileType
 }
+
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageBody: string
 }
 export type SidebarType = {}
-export type UsersPageType ={
+/*export type UsersPageType ={
     users: Array<UsersType>
 }
 export type StateType = {
@@ -41,11 +75,9 @@ export type StateType = {
     dialogsPage: DialogsPageType
     sidebar: SidebarType
     usersPage: UsersPageType
-}
+}*/
 
-
-export type ActionsType = ActionProfileType | ActionDialogType | ActionUsersType;
-
+/*
 export type StoreType = {
     _state: StateType
     _callSubscriber: (state: StateType ) => void
@@ -53,6 +85,7 @@ export type StoreType = {
     subscribe: (callback: (state: StateType) => void) => void
     dispatch: (action: ActionsType) => void
 }
+*/
 
 /*let store: StoreType = {
     _state: {

@@ -5,16 +5,17 @@ import React from "react";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import axios from "axios";
 import {AppStateType} from "../../redux/redux-store";
+import {ProfileType} from "../../redux/store";
 
 type PathParamsType = {
     userId: string
 }
 
 type MapStateToPropsType = {
-    profile: any
+    profile: null | ProfileType
 }
 type MapDispatchPropsType = {
-    setUserProfile: (profile: any) => void
+    setUserProfile: (profile: null | ProfileType) => void
 }
 
 type OwnProfileContainerPropsType = MapStateToPropsType & MapDispatchPropsType;

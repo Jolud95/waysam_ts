@@ -2,16 +2,17 @@ import React from 'react';
 import styles from './Users.module.css'
 import avatar from "../../assets/images/avatar.png"
 import {NavLink} from "react-router-dom";
+import {ItemsType} from "../../redux/store";
 
 
 type UsersPropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
-    users: any[]
+    users: Array<ItemsType>
     onPageChanges: (pageNumber: number) => void
-    unfollow: (userId: number) => void
-    follow: (userId: number) => void
+    unfollow: (userId: string) => void
+    follow: (userId: string) => void
 }
 
 let Users = (props: UsersPropsType) => {

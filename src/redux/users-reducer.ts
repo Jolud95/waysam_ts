@@ -1,4 +1,4 @@
-import {UsersType} from "./store";
+import {ItemsType, UsersType} from "./store";
 
 export const FOLLOW = "FOLLOW";
 export const UNFOLLOW = "UNFOLLOW";
@@ -9,15 +9,15 @@ export const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 export type FollowAction = {
     type: typeof FOLLOW
-    userId: number
+    userId: string
 }
 export type UnfollowAction = {
     type: typeof UNFOLLOW
-    userId: number
+    userId: string
 }
 export type SetUsersAction = {
     type: typeof SET_USERS
-    users: Array<UsersType>
+    users: Array<ItemsType>
 }
 export type setCurrentPageAction = {
     type: typeof SET_CURRENT_PAGE
@@ -99,9 +99,9 @@ const usersReducer = (state = initialState, action: ActionUsersType): UsersType 
 
 }
 
-export const follow = (userId: number): FollowAction => ({type: FOLLOW, userId});
-export const unfollow = (userId: number): UnfollowAction => ({type: UNFOLLOW, userId});
-export const setUsers = (users: any[]): SetUsersAction  => ({type: SET_USERS, users});
+export const follow = (userId: string): FollowAction => ({type: FOLLOW, userId});
+export const unfollow = (userId: string): UnfollowAction => ({type: UNFOLLOW, userId});
+export const setUsers = (users: Array<ItemsType>): SetUsersAction  => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage: number): setCurrentPageAction => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (totalUsersCount: number): setTotalUsersCountAction => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
 export const toggleIsFetching = (isFetching: boolean): toggleIsFetchingAction => ({type: TOGGLE_IS_FETCHING, isFetching})

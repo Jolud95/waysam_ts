@@ -1,8 +1,9 @@
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preolader/Preloader";
+import {ProfileType} from "../../../redux/store";
 
 type ProfileInfoPropsType = {
-    profile: any
+    profile: null | ProfileType
 }
 
 

@@ -12,21 +12,22 @@ import {
     toggleIsFetching,
     unfollow
 } from "../../redux/users-reducer";
+import {ItemsType} from "../../redux/store";
 
 type MapStateToPropsType = {
     isFetching: boolean
     totalUsersCount: number
     pageSize: number
     currentPage: number
-    users: any[]
+    users: Array<ItemsType>
 }
 type MapDispatchPropsType = {
     toggleIsFetching: (isFetching: boolean) => void
-    setUsers: (users: any[]) => void
+    setUsers: (users: Array<ItemsType>) => void
     setTotalUsersCount: (totalUsersCount: number) => void
     setCurrentPage: (pageNumber: number) => void
-    unfollow: (userId: number) => void
-    follow: (userId: number) => void
+    unfollow: (userId: string) => void
+    follow: (userId: string) => void
 }
 
 type UsersContainerPropsType = MapStateToPropsType & MapDispatchPropsType;

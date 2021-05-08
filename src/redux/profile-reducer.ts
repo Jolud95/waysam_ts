@@ -1,4 +1,4 @@
-import {ProfilePageType} from "./store";
+import {ProfilePageType, ProfileType} from "./store";
 
 
 export const ADD_POST = "ADD-POST";
@@ -14,7 +14,7 @@ export type UpdateNewPostTextAction = {
 }
 export type setUserProfileAction = {
     type: typeof SET_USER_PROFILE
-    profile: any
+    profile: null | ProfileType
 }
 
 export type ActionProfileType = AddPostAction | UpdateNewPostTextAction | setUserProfileAction
@@ -53,4 +53,4 @@ export const profileReducer = (state = initialState, action: ActionProfileType):
 
 export const addPostActionCreator = (): AddPostAction=> ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (text: string): UpdateNewPostTextAction => ({type: UPDATE_NEW_POST_TEXT, newText: text})
-export const setUserProfile = (profile: any): setUserProfileAction  => ({type: SET_USER_PROFILE, profile})
+export const setUserProfile = (profile: null | ProfileType): setUserProfileAction  => ({type: SET_USER_PROFILE, profile})
