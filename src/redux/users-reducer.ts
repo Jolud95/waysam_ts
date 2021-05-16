@@ -6,6 +6,7 @@ export const SET_USERS = "SET_USERS";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 export const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+export const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 export type FollowAction = {
     type: typeof FOLLOW
@@ -31,6 +32,12 @@ export type toggleIsFetchingAction = {
     type: typeof TOGGLE_IS_FETCHING
     isFetching: boolean
 }
+export type toggleIsFollowingProgressAction = {
+    type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
+    isFetching: boolean
+    userId: string
+}
+
 export type ActionUsersType =
     FollowAction
     | UnfollowAction
@@ -38,13 +45,15 @@ export type ActionUsersType =
     | setCurrentPageAction
     | setTotalUsersCountAction
     | toggleIsFetchingAction
+    | toggleIsFollowingProgressAction
 
 let initialState: UsersType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    isFollowingProgress: []
 };
 
 const usersReducer = (state = initialState, action: ActionUsersType): UsersType => {
@@ -93,6 +102,15 @@ const usersReducer = (state = initialState, action: ActionUsersType): UsersType 
                 ...state,
                 isFetching: action.isFetching
             }
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            debugger
+            return {
+                ...state,
+                isFollowingProgress:
+                    action.isFetching
+                        ? [...state.isFollowingProgress, action.userId]
+                        : state.isFollowingProgress.filter(id => id != action.userId)
+            }
         default:
             return state;
     }
@@ -101,9 +119,20 @@ const usersReducer = (state = initialState, action: ActionUsersType): UsersType 
 
 export const follow = (userId: string): FollowAction => ({type: FOLLOW, userId});
 export const unfollow = (userId: string): UnfollowAction => ({type: UNFOLLOW, userId});
-export const setUsers = (users: Array<ItemsType>): SetUsersAction  => ({type: SET_USERS, users});
+export const setUsers = (users: Array<ItemsType>): SetUsersAction => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage: number): setCurrentPageAction => ({type: SET_CURRENT_PAGE, currentPage})
-export const setTotalUsersCount = (totalUsersCount: number): setTotalUsersCountAction => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
-export const toggleIsFetching = (isFetching: boolean): toggleIsFetchingAction => ({type: TOGGLE_IS_FETCHING, isFetching})
+export const setTotalUsersCount = (totalUsersCount: number): setTotalUsersCountAction => ({
+    type: SET_TOTAL_USERS_COUNT,
+    totalUsersCount
+})
+export const toggleIsFetching = (isFetching: boolean): toggleIsFetchingAction => ({
+    type: TOGGLE_IS_FETCHING,
+    isFetching
+})
+export const toggleIsFollowingProgress = (isFetching: boolean, userId: string): toggleIsFollowingProgressAction => ({
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    isFetching,
+    userId
+})
 
 export default usersReducer;

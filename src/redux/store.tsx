@@ -33,8 +33,8 @@ export type UsersType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    isFollowingProgress: Array<string>
 }
-
 export type ProfileType = {
     userId: string
     lookingForAJob: boolean
@@ -67,6 +67,16 @@ export type DialogsPageType = {
     newMessageBody: string
 }
 export type SidebarType = {}
+
+export type AuthType = {
+    userId: null | string
+    login: null | string
+    email: null | string
+    isAuth: boolean
+};
+
+
+
 /*export type UsersPageType ={
     users: Array<UsersType>
 }
