@@ -1,9 +1,8 @@
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profile-reducer";
+import {getUserProfile} from "../../redux/profile-reducer";
 import React from "react";
-import {RouteComponentProps, withRouter} from "react-router-dom";
-import axios from "axios";
+import {RouteComponentProps, withRouter, Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 import {ProfileType} from "../../redux/store";
 
@@ -13,9 +12,10 @@ type PathParamsType = {
 
 type MapStateToPropsType = {
     profile: null | ProfileType
+    isAuth: boolean
 }
 type MapDispatchPropsType = {
-    setUserProfile: (profile: null | ProfileType) => void
+    getUserProfile: (userId: string) => void
 }
 
 type OwnProfileContainerPropsType = MapStateToPropsType & MapDispatchPropsType;
@@ -28,13 +28,11 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
             if (!userId) {
                 userId = "2";
             }
-            axios.get("https://social-network.samuraijs.com/api/1.0/profile/" + userId)
-                .then(response => {
-                    this.props.setUserProfile(response.data);
-                });
+            this.props.getUserProfile(userId)
         }
     }
     render() {
+        if (!this.props.isAuth) return <Redirect to={"/login"}/>
         return (
             <div>
                 <Profile {...this.props} profile={this.props.profile}/>
@@ -44,10 +42,11 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 };
 
 let mapStateToProps = (state: AppStateType) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth
 })
 
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
-export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent);
 

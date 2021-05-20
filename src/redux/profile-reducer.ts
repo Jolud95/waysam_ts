@@ -1,4 +1,5 @@
 import {ProfilePageType, ProfileType} from "./store";
+import {usersAPI} from "../API/api";
 
 
 export const ADD_POST = "ADD-POST";
@@ -54,3 +55,10 @@ export const profileReducer = (state = initialState, action: ActionProfileType):
 export const addPostActionCreator = (): AddPostAction=> ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (text: string): UpdateNewPostTextAction => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 export const setUserProfile = (profile: null | ProfileType): setUserProfileAction  => ({type: SET_USER_PROFILE, profile})
+export const getUserProfile = (userId: string) => {
+    return (dispatch: (action: ActionProfileType) => void) => {
+        usersAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data));
+        });
+    }
+}
