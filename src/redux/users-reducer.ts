@@ -1,5 +1,5 @@
-import {ItemsType, UsersType} from "./store";
-import {usersAPI} from "../API/api";
+import {UsersType} from "./statesType";
+import {ItemsType, usersAPI} from "../API/api";
 
 export const FOLLOW = "FOLLOW";
 export const UNFOLLOW = "UNFOLLOW";

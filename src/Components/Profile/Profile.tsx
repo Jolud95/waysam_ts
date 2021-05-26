@@ -1,6 +1,6 @@
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {ProfileType} from "../../redux/store";
+import {ProfileType} from "../../redux/statesType";
 
 type ProfilePropsType = {
     profile: null | ProfileType

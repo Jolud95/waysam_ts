@@ -1,3 +1,5 @@
+import {ItemsType} from "../API/api";
+
 export type PostsType = {
     id: number
     message: string
@@ -12,21 +14,6 @@ export type MessagesType = {
     message: string
 }
 
-export type ItemsType = {
-    name: string
-    id: string
-    photos: {
-        small: null | string
-        large: null | string
-    }
-    status: null | string
-    followed: boolean
-}
-export type UserType = {
-    items: Array<ItemsType>
-    totalCount: number
-    error: null | string
-}
 export type UsersType = {
     users: Array<ItemsType>
     pageSize: number
@@ -69,33 +56,12 @@ export type DialogsPageType = {
 export type SidebarType = {}
 
 export type AuthType = {
-    userId: null | string
+    userId: null | number
     login: null | string
     email: null | string
     isAuth: boolean
 };
 
-
-
-/*export type UsersPageType ={
-    users: Array<UsersType>
-}
-export type StateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sidebar: SidebarType
-    usersPage: UsersPageType
-}*/
-
-/*
-export type StoreType = {
-    _state: StateType
-    _callSubscriber: (state: StateType ) => void
-    getState: () => StateType
-    subscribe: (callback: (state: StateType) => void) => void
-    dispatch: (action: ActionsType) => void
-}
-*/
 
 /*let store: StoreType = {
     _state: {

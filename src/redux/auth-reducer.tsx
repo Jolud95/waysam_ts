@@ -1,4 +1,4 @@
-import {AuthType} from "./store";
+import {AuthType} from "./statesType";
 import {authAPI} from "../API/api";
 
 
@@ -7,7 +7,7 @@ export const SET_USER_DATA = "SET_USER_DATA";
 export type setAuthUserDataAction = {
     type: typeof SET_USER_DATA
     data: {
-        userId: null | string
+        userId: null | number
         login: null | string
         email: null | string
     }
@@ -34,7 +34,7 @@ const authReducer = (state = initialState, action: setAuthUserDataAction): AuthT
     }
 }
 
-export const setAuthUserData = (userId: null | string, login: null | string, email: null | string): setAuthUserDataAction => ({type: SET_USER_DATA, data:{userId, login, email}});
+export const setAuthUserData = (userId: null | number, login: null | string, email: null | string): setAuthUserDataAction => ({type: SET_USER_DATA, data:{userId, login, email}});
 export const getAuthUserData = () => {
     return (dispatch: (action: setAuthUserDataAction) => void) => {
         authAPI.me()

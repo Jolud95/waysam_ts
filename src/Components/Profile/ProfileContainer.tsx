@@ -4,7 +4,7 @@ import {getUserProfile} from "../../redux/profile-reducer";
 import React from "react";
 import {RouteComponentProps, withRouter, Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
-import {ProfileType} from "../../redux/store";
+import {ProfileType} from "../../redux/statesType";
 
 type PathParamsType = {
     userId: string

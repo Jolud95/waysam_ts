@@ -1,4 +1,4 @@
-import {DialogsPageType} from "./store";
+import {DialogsPageType} from "./statesType";
 
 export const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 export const SEND_MESSAGE = "SEND-MESSAGE";

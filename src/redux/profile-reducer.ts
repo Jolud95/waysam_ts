@@ -1,4 +1,4 @@
-import {ProfilePageType, ProfileType} from "./store";
+import {ProfilePageType, ProfileType} from "./statesType";
 import {usersAPI} from "../API/api";
 
 

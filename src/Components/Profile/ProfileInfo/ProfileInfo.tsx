@@ -1,6 +1,6 @@
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preolader/Preloader";
-import {ProfileType} from "../../../redux/store";
+import {ProfileType} from "../../../redux/statesType";
 
 type ProfileInfoPropsType = {
     profile: null | ProfileType

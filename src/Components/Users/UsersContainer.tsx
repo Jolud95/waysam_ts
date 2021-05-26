@@ -13,7 +13,8 @@ import {
     unfollow,
     getUsers
 } from "../../redux/users-reducer";
-import {ItemsType} from "../../redux/store";
+import {ItemsType} from "../../API/api";
+
 
 
 type MapStateToPropsType = {
