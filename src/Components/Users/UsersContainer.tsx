@@ -14,6 +14,8 @@ import {
     getUsers
 } from "../../redux/users-reducer";
 import {ItemsType} from "../../API/api";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 
@@ -101,14 +103,16 @@ let mapStateToProps = (state: AppStateType) => {
 }*/
 
 
-const UserContainer = connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleIsFetching,
-    toggleIsFollowingProgress,
-    getUsers
-})(UsersContainer);
-export default UserContainer;
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        follow,
+        unfollow,
+        setUsers,
+        setCurrentPage,
+        setTotalUsersCount,
+        toggleIsFetching,
+        toggleIsFollowingProgress,
+        getUsers
+    })
+)(UsersContainer)
