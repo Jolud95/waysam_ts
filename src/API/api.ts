@@ -26,6 +26,32 @@ export type AuthMeType = {
     fieldsErrors: Array<string>
     resultCode: number
 };
+export type GetProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        github: string
+        instagram: string
+        mainLink: null
+        twitter: string
+        vk: string
+        website: null
+        youtube: null
+    }
+    fullName: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    photos: {
+        large: string
+        small: string
+    }
+    userId: string
+}
+export type UsualResponseType = {
+    resultCode: number
+    messages: Array<string>
+    data: {}
+}
 
 const instance = axios.create({
     withCredentials: true,
@@ -43,13 +69,26 @@ export const usersAPI = {
             });
     },
     follow(userId: string) {
-        return instance.post(`follow/${userId}`)
+        return instance.post<UsualResponseType>(`follow/${userId}`)
     },
     unfollow(userId: string) {
-        return instance.delete(`follow/${userId}`, {})
+        return instance.delete<UsualResponseType>(`follow/${userId}`, {})
     },
     getProfile(userId: string) {
+        console.warn("It's old way. Change your API")
+        return profileAPI.getUserProfile(userId);
+    }
+}
+
+export const profileAPI = {
+    getUserProfile(userId: string) {
         return instance.get('profile/' + userId)
+    },
+    getUserStatus(userId: string) {
+        return instance.get<string>('profile/status/' + userId)
+    },
+    updateUserStatus(status: string) {
+        return instance.put<UsualResponseType>('profile/status', {status})
     }
 }
 export const authAPI = {

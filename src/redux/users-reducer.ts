@@ -86,25 +86,21 @@ const usersReducer = (state = initialState, action: ActionUsersType): UsersType 
                 users: action.users
             }
         case SET_CURRENT_PAGE:
-            debugger
             return {
                 ...state,
                 currentPage: action.currentPage
             }
         case SET_TOTAL_USERS_COUNT:
-            debugger
             return {
                 ...state,
                 totalUsersCount: action.totalUsersCount
             }
         case TOGGLE_IS_FETCHING:
-            debugger
             return {
                 ...state,
                 isFetching: action.isFetching
             }
         case TOGGLE_IS_FOLLOWING_PROGRESS:
-            debugger
             return {
                 ...state,
                 isFollowingProgress:
