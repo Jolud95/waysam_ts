@@ -1853,6 +1853,14 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@types/redux-form@^8.3.1":
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/@types/redux-form/-/redux-form-8.3.1.tgz#a5e67396fb86cf58d511bed7e4c0c9c65d01042a"
+  integrity sha512-8lmJFxHtUBMWoI7lLX8Q+lhz9/nmkerEtrxgHZzhRwhQzD73MWkP9EA9w6Gx7cc02Fz3FkpYlfTN+9ELGUXZQQ==
+  dependencies:
+    "@types/react" "*"
+    redux "^3.6.0 || ^4.0.0"
+
 "@types/redux-thunk@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@types/redux-thunk/-/redux-thunk-2.1.0.tgz#bc2b6e972961831afb82a9bf4f06726e351f9416"
@@ -9372,6 +9380,13 @@ redux@*, redux@^4.0.0, redux@^4.0.5:
   dependencies:
     loose-envify "^1.4.0"
     symbol-observable "^1.2.0"
+
+"redux@^3.6.0 || ^4.0.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.0.tgz#eb049679f2f523c379f1aff345c8612f294c88d4"
+  integrity sha512-uI2dQN43zqLWCt6B/BMGRMY6db7TTY4qeHHfGeKb3EOhmOKjU3KdWvNLJyqaHRksv/ErdNH7cFZWg9jXtewy4g==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
 
 regenerate-unicode-properties@^8.2.0:
   version "8.2.0"
