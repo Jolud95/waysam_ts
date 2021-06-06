@@ -1,4 +1,4 @@
-import {ActionDialogType, sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {ActionDialogType, sendMessageCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
@@ -10,16 +10,12 @@ import React from "react";
 let mapStateToProps = (state: AppStateType) => {
     return {
         dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch: (action: ActionDialogType) => void) => {
     return {
-        updateNewMessageBody: (body: string) => {
-            dispatch(updateNewMessageBodyCreator(body))
-        },
-        sendMessage: () => {
-            dispatch(sendMessageCreator())
+        sendMessage: (newMessageBody: string) => {
+            dispatch(sendMessageCreator(newMessageBody))
         }
     }
 }
