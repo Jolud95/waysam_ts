@@ -1,5 +1,6 @@
 import {ProfilePageType, ProfileType} from "./statesType";
 import {profileAPI, usersAPI} from "../API/api";
+import {AppThunkType} from "./redux-store";
 
 
 export const ADD_POST = "ADD-POST";
@@ -58,22 +59,22 @@ export const addPostActionCreator = (newPostText: string): AddPostAction=> ({typ
 export const setUserProfile = (profile: null | ProfileType): setUserProfileAction  => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (status: string): setStatusAction => ({type: SET_STATUS, status})
 
-export const getUserProfile = (userId: string) => {
-    return (dispatch: (action: ActionProfileType) => void) => {
+export const getUserProfile = (userId: string): AppThunkType => {
+    return (dispatch) => {
         usersAPI.getProfile(userId).then(response => {
             dispatch(setUserProfile(response.data));
         });
     }
 }
-export const getStatus = (userId: string) => {
-    return (dispatch: (action: ActionProfileType) => void) => {
+export const getStatus = (userId: string): AppThunkType => {
+    return (dispatch) => {
         profileAPI.getUserStatus(userId).then(response => {
             dispatch(setStatus(response.data));
         });
     }
 }
-export const updateStatus = (status: string) => {
-    return (dispatch: (action: ActionProfileType) => void) => {
+export const updateStatus = (status: string): AppThunkType => {
+    return (dispatch) => {
         profileAPI.updateUserStatus(status).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(setStatus(status));

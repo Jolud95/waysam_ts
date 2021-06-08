@@ -47,10 +47,10 @@ export type GetProfileType = {
     }
     userId: string
 }
-export type UsualResponseType = {
+export type UsualResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>
-    data: {}
+    data: D
 }
 
 const instance = axios.create({
@@ -94,5 +94,11 @@ export const profileAPI = {
 export const authAPI = {
     me() {
         return instance.get<AuthMeType>('auth/me')
+    },
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return instance.post<UsualResponseType<{userId: number}>>('auth/login', {email, password, rememberMe})
+    },
+    logout() {
+        return instance.delete<UsualResponseType>('auth/login')
     }
 }
