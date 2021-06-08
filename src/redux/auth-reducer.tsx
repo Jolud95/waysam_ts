@@ -1,6 +1,7 @@
 import {AuthType} from "./statesType";
 import {authAPI} from "../API/api";
 import {AppThunkType} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
 
 
@@ -57,6 +58,11 @@ export const login = (email: string, password: string, rememberMe: boolean): App
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(getAuthUserData());
+                } else {
+                    let message = response.data.messages.length > 0
+                        ? response.data.messages[0]
+                        : "Some error"
+                    dispatch(stopSubmit("login", {_error: message}));
                 }
             });
     }

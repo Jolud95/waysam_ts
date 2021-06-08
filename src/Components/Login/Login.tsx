@@ -1,4 +1,5 @@
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import style from "../common/FormsControls/FormsControls.module.css";
 import React from "react";
 import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
@@ -24,9 +25,9 @@ const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }
-    if (props.isAuth) {
+   /* if (props.isAuth) {
         return <Redirect to={"/profile"}/>
-    }
+    }*/
 
     return (
         <div>
@@ -49,6 +50,9 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <div>
                     <Field type={"checkbox"} name={"rememberMe"} component={Input}/> remember me
                 </div>
+                {props.error && <div className={style.formSummaryError}>
+                    {props.error}
+                </div>}
                 <div>
                     <button>LogIn</button>
                 </div>
