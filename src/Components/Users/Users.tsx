@@ -26,14 +26,14 @@ let Users = (props: UsersPropsType) => {
     }
     return <div>
         <div>
-            {pages.map((p) => {
-                return <span className={props.currentPage === p ? styles.selectedPage : ""}
+            {(pages || []).map((p) => {
+                return <span key={p} className={props.currentPage === p ? styles.selectedPage : ""}
                              onClick={(e) => {
                                  props.onPageChanges(p)
                              }}>{p}</span>
             })}
         </div>
-        {props.users.map(u => <div key={u.id}>
+        {(props.users || []).map(u => <div key={u.id}>
             <span>
                 <div>
                     <NavLink to={"/profile/" + u.id}>

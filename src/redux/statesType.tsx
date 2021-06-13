@@ -60,6 +60,9 @@ export type AuthType = {
     email: null | string
     isAuth: boolean
 };
+export type AppInitializedType = {
+    initialized: boolean
+}
 
 
 /*let store: StoreType = {

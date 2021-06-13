@@ -4,8 +4,6 @@ import {AppThunkType} from "./redux-store";
 import {stopSubmit} from "redux-form";
 
 
-
-
 export const SET_USER_DATA = "SET_USER_DATA";
 
 export type setAuthUserDataAction = {
@@ -25,7 +23,7 @@ let initialState: AuthType = {
     isAuth: false
 };
 
-export type ActionAuthType =  setAuthUserDataAction;
+export type ActionAuthType = setAuthUserDataAction;
 
 const authReducer = (state = initialState, action: ActionAuthType): AuthType => {
     switch (action.type) {
@@ -40,10 +38,13 @@ const authReducer = (state = initialState, action: ActionAuthType): AuthType => 
     }
 }
 
-export const setAuthUserData = (userId: null | number, login: null | string, email: null | string, isAuth: boolean): setAuthUserDataAction => ({type: SET_USER_DATA, data:{userId, login, email, isAuth}});
-export const getAuthUserData = ():AppThunkType => {
+export const setAuthUserData = (userId: null | number, login: null | string, email: null | string, isAuth: boolean): setAuthUserDataAction => ({
+    type: SET_USER_DATA,
+    data: {userId, login, email, isAuth}
+});
+export const getAuthUserData = (): AppThunkType => {
     return (dispatch) => {
-        authAPI.me()
+        return authAPI.me()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, login, email} = response.data.data;
