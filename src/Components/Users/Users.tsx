@@ -3,7 +3,7 @@ import styles from './Users.module.css'
 import avatar from "../../assets/images/avatar.png"
 import {NavLink} from "react-router-dom";
 import {ItemsType} from "../../API/api";
-
+import Paginator from '../common/Paginator/Paginator';
 
 
 type UsersPropsType = {
@@ -19,20 +19,9 @@ type UsersPropsType = {
 
 
 let Users = (props: UsersPropsType) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages: Array<number> = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
     return <div>
-        <div>
-            {(pages || []).map((p) => {
-                return <span key={p} className={props.currentPage === p ? styles.selectedPage : ""}
-                             onClick={(e) => {
-                                 props.onPageChanges(p)
-                             }}>{p}</span>
-            })}
-        </div>
+        <Paginator currentPage={props.currentPage} onPageChanges={props.onPageChanges}
+                   totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}/>
         {(props.users || []).map(u => <div key={u.id}>
             <span>
                 <div>
@@ -43,9 +32,13 @@ let Users = (props: UsersPropsType) => {
                 <div>
                     {u.followed
                         ? <button disabled={props.isFollowingProgress.some(id => id === u.id)}
-                                  onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
+                                  onClick={() => {
+                                      props.unfollow(u.id)
+                                  }}>Unfollow</button>
                         : <button disabled={props.isFollowingProgress.some(id => id === u.id)}
-                                  onClick={() => {props.follow(u.id)}}>Follow</button>
+                                  onClick={() => {
+                                      props.follow(u.id)
+                                  }}>Follow</button>
                     }
                 </div>
             </span>
