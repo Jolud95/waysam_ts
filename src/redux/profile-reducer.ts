@@ -4,6 +4,7 @@ import {AppThunkType} from "./redux-store";
 
 
 export const ADD_POST = "ADD-POST";
+export const DELETE_POST = "DELETE-POST";
 export const SET_USER_PROFILE = "SET_USERS";
 export const SET_STATUS = "SET_STATUS";
 
@@ -11,7 +12,10 @@ export const SET_STATUS = "SET_STATUS";
 export type AddPostAction = {
     type: typeof ADD_POST
     newPostText: string
-
+}
+export type DeletePostAction = {
+    type: typeof DELETE_POST
+    postId: number
 }
 export type setUserProfileAction = {
     type: typeof SET_USER_PROFILE
@@ -22,7 +26,7 @@ export type setStatusAction = {
     status: string
 }
 
-export type ActionProfileType = AddPostAction |  setUserProfileAction | setStatusAction
+export type ActionProfileType = AddPostAction |  setUserProfileAction | setStatusAction | DeletePostAction
 
 let initialState: ProfilePageType = {
     posts: [
@@ -40,6 +44,12 @@ export const profileReducer = (state = initialState, action: ActionProfileType):
                 ...state,
                 posts: [...state.posts, {id: 5, message: action.newPostText, likesCount: 0}]
             };
+        case DELETE_POST:
+            let newPosts = state.posts.filter((p) => p.id != action.postId)
+            return {
+                ...state,
+                posts: newPosts
+            };
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -55,7 +65,8 @@ export const profileReducer = (state = initialState, action: ActionProfileType):
     }
 }
 
-export const addPostActionCreator = (newPostText: string): AddPostAction=> ({type: ADD_POST, newPostText})
+export const addPostActionCreator = (newPostText: string): AddPostAction => ({type: ADD_POST, newPostText})
+export const deletePost = (postId: number): DeletePostAction => ({type: DELETE_POST, postId})
 export const setUserProfile = (profile: null | ProfileType): setUserProfileAction  => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (status: string): setStatusAction => ({type: SET_STATUS, status})
 
